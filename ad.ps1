@@ -1,1 +1,1 @@
-get-aduser 
+write-host "Hi Nur"

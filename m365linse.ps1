@@ -5,7 +5,6 @@ $grpname=$env:License
 
 if (Add-ADGroupMember  $grpname -Members $username){
 
-Write-Host 'user added'
+Write-Host 'User added successfully'
 
 }
-

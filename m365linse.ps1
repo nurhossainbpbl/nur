@@ -39,4 +39,4 @@ if ( (Get-ADUser $usr -Properties memberof).memberof -ccontains (Get-ADGroup $gr
                 }
             }
      }
- }
+ 

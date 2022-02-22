@@ -39,4 +39,8 @@ if ( (Get-ADUser $usr -Properties memberof).memberof -ccontains (Get-ADGroup $gr
                 }
             }
      }
- 
+ Write-host "License Summary Report"
+ $plicese='300'
+ $ulicense=(Get-ADGroup 'Business Basic' -Properties *). Member. Count
+ $availableLicense= ($plicese-$ulicense)
+ write-host $availableLicense "License available out of 300"

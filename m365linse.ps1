@@ -3,9 +3,9 @@ $usr=$env:username
 $grp=$env:License
 #$usr="nur1"
 #$grp="Business Basic"
-$grp1= (Get-ADGroup "Business Standard" ).DistinguishedName
-$grp2= (Get-ADGroup "Business Basic" ).DistinguishedName
-$grp3= (Get-ADGroup "EMS" ).DistinguishedName
+$grp1= (Get-ADGroup "Microsoft 365 Business Basic" ).DistinguishedName
+$grp2= (Get-ADGroup "Microsoft 365 Business Standard" ).DistinguishedName
+$grp3= (Get-ADGroup "Enterprise Mobility Security E5" ).DistinguishedName
 
 
 if ( (Get-ADUser $usr -Properties memberof).memberof -ccontains (Get-ADGroup $grp).DistinguishedName)
@@ -41,6 +41,12 @@ if ( (Get-ADUser $usr -Properties memberof).memberof -ccontains (Get-ADGroup $gr
      }
  Write-host "License Summary Report"
  $plicese='300'
- $ulicense=(Get-ADGroup 'Business Basic' -Properties *). Member. Count
- $availableLicense= ($plicese-$ulicense)
- write-host $availableLicense "License available out of 300"
+ $ulicensebasic=(Get-ADGroup 'Microsoft 365 Business Basic' -Properties *). Member. Count
+ $ulicensestandard=(Get-ADGroup 'Microsoft 365 Business Standard' -Properties *). Member. Count
+ $ulicenseems=(Get-ADGroup 'Enterprise Mobility Security E5' -Properties *). Member. Count
+ $availableLicensebasic= ($plicese-$ulicensebasic)
+ write-host $availableLicensebasic "License available out of 300"
+ $availableLicensestandard= ($plicese-$ulicensestandard)
+ write-host $availableLicensestandard"License available out of 150"
+ $availableLicenseems= ($plicese-$ulicensesems)
+ write-host $availableLicenseems"License available out of 150"

@@ -40,13 +40,18 @@ if ( (Get-ADUser $usr -Properties memberof).memberof -ccontains (Get-ADGroup $gr
             }
      }
  Write-host "License Summary Report"
- $plicese='300'
- $ulicensebasic=(Get-ADGroup 'Microsoft 365 Business Basic' -Properties *). Member. Count
- $ulicensestandard=(Get-ADGroup 'Microsoft 365 Business Standard' -Properties *). Member. Count
- $ulicenseems=(Get-ADGroup 'Enterprise Mobility Security E5' -Properties *). Member. Count
- $availableLicensebasic= ($plicese-$ulicensebasic)
- write-host $availableLicensebasic "License available out of 300"
- $availableLicensestandard= ($plicese-$ulicensestandard)
- write-host $availableLicensestandard"License available out of 150"
- $availableLicenseems= ($plicese-$ulicensesems)
- write-host $availableLicenseems"License available out of 150"
+ $basic='300'
+ $ulbasic=(Get-ADGroup 'Microsoft 365 Business Basic' -Properties *). Member. Count
+ $avbasic= ($basic-$ulbasic)
+ write-host $avbasic " M365 Business Basic License available out of "$basic
+
+ $standard='150'
+ $ulstandard=(Get-ADGroup 'Microsoft 365 Business Standard' -Properties *). Member. Count
+ $avstandard= ($standard-$ulstandard)
+ write-host $avstandard " M365 Business Standard License available out of"$standard
+
+
+ $ems='5'
+ $ulems=(Get-ADGroup 'Enterprise Mobility Security E5' -Properties *). Member. Count
+ $avems= ($ems-$ulems)
+ write-host $avems " Enterprise Mobility + Security E5 License available out of"$ems

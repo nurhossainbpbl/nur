@@ -1,12 +1,9 @@
 Import-Module -Name ActiveDirectory
 $usr=$env:username
 $grp=$env:License
-#$usr="nur1"
-#$grp="Business Basic"
 $grp1= (Get-ADGroup "Microsoft 365 Business Basic" ).DistinguishedName
 $grp2= (Get-ADGroup "Microsoft 365 Business Standard" ).DistinguishedName
 $grp3= (Get-ADGroup "Enterprise Mobility Security E5" ).DistinguishedName
-
 
 if ( (Get-ADUser $usr -Properties memberof).memberof -ccontains (Get-ADGroup $grp).DistinguishedName)
 {
@@ -39,8 +36,9 @@ if ( (Get-ADUser $usr -Properties memberof).memberof -ccontains (Get-ADGroup $gr
                 }
             }
      }
- Write-host "License Summary Report"
- $basic='300'
+
+ Write-host "M365 License Summary Report"
+ $basic='305'
  $ulbasic=(Get-ADGroup 'Microsoft 365 Business Basic' -Properties *). Member. Count
  $avbasic= ($basic-$ulbasic)
  write-host $avbasic " M365 Business Basic License available out of "$basic
@@ -50,8 +48,7 @@ if ( (Get-ADUser $usr -Properties memberof).memberof -ccontains (Get-ADGroup $gr
  $avstandard= ($standard-$ulstandard)
  write-host $avstandard " M365 Business Standard License available out of"$standard
 
-
- $ems='5'
+ $ems='25'
  $ulems=(Get-ADGroup 'Enterprise Mobility Security E5' -Properties *). Member. Count
  $avems= ($ems-$ulems)
  write-host $avems " Enterprise Mobility + Security E5 License available out of"$ems
